@@ -1,0 +1,16 @@
+# DAC MCP4725
+
+# 1. Uses the I2C communication module - where in we connect SCL to A5 and SDA to A4
+# 2. A 12 bit DAC = 4095 steps , and if we are working with 5V it equals 1.2mV per step
+# 3. Has an EEPROM to store the last value/ can continue from where it left.
+# 4. I2C address at 0x62 - to change - connect addr to VCC(0x63) OR to GND (0x60) 
+# 5. With fewer bits - resolution goes down
+# 6. SCL - serial clock : controlled by the controller device - to clock data in/out
+# 7. SDA - to transmit data to/from target device
+# 8. A0 pin connected to VSS/VDD pins of the Arduino board for the I2C comm.
+
+# References :
+# https://www.youtube.com/watch?v=SgPbzAWIwlk
+# GitHub repo - https://github.com/search?q=adafruit%20mcp4725&type=repositories
+# https://circuitdigest.com/microcontroller-projects/arduino-dac-tutorial-interfacing-mcp4725-dac
+# documentation for mcp4725 library - https://github.com/RobTillaart/MCP4725
