@@ -1,2 +1,78 @@
-//Readmee 
-Put in information about the SPI protocol
+Serial Peripheral Interface (SPI):
+
+1. Facilitates short distance communication between peripheral integrated circuits and micro controllers - synchronous serial communication protocol
+2. Components - 
+		Master Device
+		Slave Device
+		SPI Bus 
+		Data Transfer protocol
+		Data Rate	
+		Clock Polarity/Pulse
+
+SPI Bus: 
+	Slave select 		               - (SS)
+	Master Out Slave In 	(MOSI)   - data from master to slave
+	Master in Slave out	(MISO)     - data from slave to master
+	Serial Clock		               - (SCK)
+
+- In every clock cycle one bit of data is transferred simultaneously in and out of master and slave 
+- Polarity - used to define the relationship between the data signals and the clock signals 
+- In serial communication, the bits are sent one by one through a single wire. 
+- Any number of data bits can be transferred in the continuous stream unlike i2c and uart where the data is sent in packets - no start or stop bits, so streamed continuously
+- Synchronous communication protocol - using clock signal
+- The clock signal can be modified using clock polarity and clock phase - define when the bits are output and when they are sampled 
+- Clock polarity - decides whether the bit is output/ sampled in the rising or the falling edge
+- Clock phase - decides whether the output/ sampling to occur on the first or the second edge irrespective of its rising/falling
+
+Advantages : 
+		1. High speed data transfer - than I2C
+		2. Simple hardware requirements 
+		3. Full-Duplex communication - bidirectional
+		4. Multiple slave devices - using slave select
+		5. Widespread adoption 
+		6. Low overheads - doesn't require complex addressing/ data packaging
+		7. Flexible configurability
+
+- Can be 3 or 4 wire
+- Master decides the clock cycle
+- An individual chip select signal is required for each subnode/slave which is an active low signal (meaning signal will be performing its function when its logic level is 0)
+- Data is transmitted (MOSI/SDO) and received (MISO/SDI) simultaneously
+- The settings are maintained until begintransaction is called again
+- SPI interrupts work only at the end of SPI.endTransaction()
+- SPISettings mySetting(speedMaximum, dataOrder, dataMode) Note: Best when any setting is a variable
+- The old data is replaced with the data received - transfer()
+- SPI.end() disables the bus such that it cannot be called by other libraries, while endtransaction() stops using the bus. 
+
+To write Code :
+	1. What is the maximum SPI speed the device can use? Set the first parameter in SPI Settings, for 15 MHz, use 15000000 upto 20MHz
+	2. Is data shifted from MSB or LSB first? SPI Settings set second parameter to MSB(most common)
+	3. Is data clock idle when high or low? Are samples on the rising or on the falling edges - third parameter in SPI settings
+	4. SPI standard is loose - pay attention to the device's datasheet 
+
+MODE		CPOL	CPHA	Output edge	Data Capture
+
+SPI_MODE0	  0  	  0	  Falling	  Rising
+SPI_MODE1	  0  	  1	  Rising	  Falling
+SPI_MODE0	  1  	  0	  Rising	  Falling
+SPI_MODE0	  1  	  1	  Falling	  Rising
+
+Sample codes:
+SPI.beginTransaction(SPISettings(14000000, MSBFIRST, SPI_MODE0));
+digitalWrite(slaveSelectPin, LOW); - setting clock to low before transfer 
+
+UNO R3 - default SPI pins 
+		 10 - CS
+		 11 - COPI
+		 12 - CIPO
+		 13 - SCK
+
+Ref:
+1. https://www.analog.com/en/resources/analog-dialogue/articles/introduction-to-spi-interface.html - very important for multiple slaves config
+2. https://www.circuitbasics.com/basics-of-the-spi-communication-protocol/
+3. Arduino doc       - https://docs.arduino.cc/learn/communication/spi/ 
+4. Arduino code1     - https://docs.arduino.cc/tutorials/due/due-extended-spi/
+5. Arduino code2     - https://www.tutorialspoint.com/arduino/arduino_serial_peripheral_interface.htm
+5. LCD SPI 	         - https://newhavendisplay.com/blog/how-to-connect-lcd-to-arduino/
+6. Arduino code3     - https://www.youtube.com/watch?v=WCw2z8Zcbcs
+
+
