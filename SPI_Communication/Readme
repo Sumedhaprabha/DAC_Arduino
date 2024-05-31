@@ -66,7 +66,18 @@ UNO R3 - default SPI pins
 		 12 - CIPO
 		 13 - SCK
 
-Ref:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Simulations in TinkerCAD:
+
+1. SPI using two arduinos - Sending a message from master arduino and displaying it in the slave serial monitor
+	https://www.tinkercad.com/things/gPykKH554S8-fantabulous-elzing-krunk
+
+2. SPI using two arduinos - Push button from master and controlling the LED through slave
+	https://www.tinkercad.com/things/1TA5kmdA75E-spi1?sharecode=D3RfavUtVeRAPA7Bs3XOZUnf0hjrVHNJUcCLtuNFCMQ
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+References:
+
 1. https://www.analog.com/en/resources/analog-dialogue/articles/introduction-to-spi-interface.html - very important for multiple slaves config
 2. https://www.circuitbasics.com/basics-of-the-spi-communication-protocol/
 3. Arduino doc       - https://docs.arduino.cc/learn/communication/spi/ 
@@ -75,4 +86,5 @@ Ref:
 5. LCD SPI 	         - https://newhavendisplay.com/blog/how-to-connect-lcd-to-arduino/
 6. Arduino code3     - https://www.youtube.com/watch?v=WCw2z8Zcbcs
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
