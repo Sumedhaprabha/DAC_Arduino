@@ -1,5 +1,11 @@
 # DAC MCP4725
 
+RESULTS:
+1. Characteristic Equation - y = 0.0012305x + 0.008999
+2. The deviation increased with increase in voltage with highest at 5v and converged at 1V
+
+
+NOTES:
 # 1. Uses the I2C communication module - where in we connect SCL to A5 and SDA to A4
 # 2. A 12 bit DAC = 4095 steps , and if we are working with 5V it equals 1.2mV per step
 # 3. Has an EEPROM to store the last value/ can continue from where it left.
