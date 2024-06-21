@@ -1,0 +1,3 @@
+ADC_Example - contains the modified code for controlling multiple ADCs simultaneosly
+ADC_Simple - is a basic file for controlling one channel of an ADC
+Other files are sample codes that have been tested.
