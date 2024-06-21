@@ -1,0 +1,3 @@
+The folder contains different programs that worked on DAC controlled by python
+
+DAC_python is an arduino file used to set voltage by getting input from python 
