@@ -21,22 +21,22 @@ void setup() {
 
 void loop() {
   float reading1 = readADC(0, chipSelectPin1);
-   float ADC1= convert(reading1)
-  print_adc(ADC1,1)
-    float reading2 = readADC(0, chipSelectPin2);
-   float ADC2= convert(reading2)
-  print_adc(ADC2,2)
-  float reading3 = readADC(0, chipSelectPin3);
-   float ADC3= convert(reading3)
-  print_adc(ADC3, 3)
-    float reading4 = readADC(0, chipSelectPin4);
-   float ADC4= convert(reading4)
-  print_adc(ADC4, 4)
+  float ADC1= convert(reading1);
+  print_adc(ADC1,1, reading1);
+  // float reading2 = readADC(0, chipSelectPin2);
+  // float ADC2= convert(reading2);
+  // print_adc(ADC2,2, reading2);
+  // float reading3 = readADC(0, chipSelectPin3);
+  // float ADC3= convert(reading3);
+  // print_adc(ADC3, 3, reading3);
+  // float reading4 = readADC(0, chipSelectPin4);
+  // float ADC4= convert(reading4);
+  // print_adc(ADC4, 4, reading4);
 }
 
 int readADC(byte channel, int chipSelectPin){
-   byte startBit = 0b00000001;
-  byte controlByte = 0b11110000; // First bit 1 gives us single-ended mode on ADC; the next three bits represent the ADC's analog input
+  byte startBit = 0b00000001;
+  byte controlByte = 0b10000000; // First bit 1 gives us single-ended mode on ADC; the next three bits represent the ADC's analog input
   byte flushByte = 0b00000000; // Flush the ADC to get the remaining byte output.
   
   digitalWrite(chipSelectPin, LOW); //Initiate SPI protocol by dropping slave select low.
@@ -49,16 +49,17 @@ int readADC(byte channel, int chipSelectPin){
  return reading;
 }
 
-void print_adc(float ADC1, int n){
-  Serial.print("ADC");
-  Serial.print(n);
-  Serial.print(": ");
-  Serial.print(ADC1);
-  Serial.print(",");
-  Serial.println(reading1);
+void print_adc(float ADC1, int n, float reading){
+  // Serial.print("ADC");
+  // Serial.print(n);
+  // Serial.print(": ");
+  Serial.println(ADC1);
+  // Serial.print(",");
+  // Serial.println(reading);
   delay(500);
 }
 
 float convert(float reading){
   return (reading*(5.0 /1023));
 }
+
